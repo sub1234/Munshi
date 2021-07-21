@@ -1,0 +1,36 @@
+<nav class="navbar ">
+    <div class="navbar-nav mr-auto">
+        <ul class="dspFlex noBullet">
+            <li *ngFor="let menu of menuList" class="nav-item dropdown">
+                <a *ngIf="checkPremission(menu.permissionId) && menu.subMenu && menu.subMenu.length>0 ; else menuDrop"
+                    class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">{{menu.label}}</a>
+                <ng-template #menuDrop>
+                    <a *ngIf="checkPremission(menu.permissionId)" class="nav-link"
+                        [routerLink]="menu.link">{{menu.label}}</a>
+                </ng-template>
+                <div class="dropdown-menu" aria-label="navbarDropdown">
+                    <div *ngFor="let subMenuitem of menu.subMenu">
+                        <a *ngIf="checkPremission(subMenuitem.permissionId) && subMenuitem.subMenuList && subMenuitem.subMenuList.length>0 ; else sideMenuDrop"
+                            class="nav-link dropdown-toggle" id="menuBar" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{subMenuitem.label}}
+                        </a>
+                        <ng-template #sideMenuDrop>
+                            <a *ngIf="checkPremission(subMenuitem.permissionId)" class="dropdownItem"
+                                class="dropdown-item" [routerLink]="subMenuitem.link">{{subMenuitem.label}}</a>
+                        </ng-template>
+                        <div *ngIf="subMenuitem.subMenuList && subMenuitem.subMenuList.length>0" class="dropdown-submenu dropdown-menu" aria-label="menuBar">
+                            <span *ngFor="let child of subMenuitem.subMenuList">
+                                <a *ngIf="checkPremission(child.permissionId)" class="dropdown-item"
+                                    [routerLink]="child.link">{{child.label}}</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -286,3 +286,18 @@
       visibility: hidden;
     }
   }
+  .fotter{
+    bottom: 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+  .fotterText{
+    margin-left: 38%;
+  }
